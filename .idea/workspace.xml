@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b06f8fcb-3aed-4cec-9237-2f0639cc2e7a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/files/scripts/example.sh" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/recipes/recipe.yml" beforeDir="false" afterPath="$PROJECT_DIR$/recipes/recipe.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

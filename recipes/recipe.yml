@@ -20,6 +20,9 @@ modules:
         - firefox-langpacks
         - gnome-system-monitor
         - nano-default-editor
+    install:
+      packages:
+        - terra-mesa
 
   - type: dnf
     replace:
