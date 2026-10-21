@@ -1,45 +1,138 @@
 ---
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
-# image will be published to ghcr.io/<user>/<name>
 name: silverblue-base
-# description will be included in the image's metadata
 description: This is my personal OS image.
+base-image: quay.io/fedora/fedora-silverblue
+image-version: 44
 
-# the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/ublue-os/silverblue-main
-image-version: latest # You can pin to a specific version of Fedora as well
-
-# module configuration, executed in order
-# you can include multiple instances of the same module
 modules:
-  - type: files
-    files:
-      - source: system
-        destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
 
   - type: dnf
     repos:
       copr:
-        - atim/starship
-    install:
-      packages:
-        - micro
-        - starship
+        - ublue-os/packages
+      files:
+        - https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo
+      nonfree: rpmfusion
     remove:
       packages:
-        # example: removing firefox (in favor of the flatpak)
-        # "firefox" is the main package, "firefox-langpacks" is a dependency
         - firefox
-        - firefox-langpacks # also remove firefox dependency (not required for all packages, this is a special case)
+        - firefox-langpacks
+        - gnome-system-monitor
+        - nano-default-editor
 
-  - type: default-flatpaks
-    configurations:
-      - notify: true # Send notification after install/uninstall is finished (true/false)
-        scope: system
-        # If no repo information is specified, Flathub will be used by default
-        install: # system flatpaks we want all users to have and not remove
-          - org.mozilla.firefox
-          - org.gnome.Loupe
-      - scope: user # Also add Flathub user repo, but no user packages
+  - type: dnf
+    replace:
+      - from-repo: terra-mesa
+        packages:
+          - mesa-dri-drivers
+          - mesa-filesystem
+          - mesa-libEGL
+          - mesa-libGL
+          - mesa-libgbm
+          - mesa-vulkan-drivers
 
-  - type: signing # this sets up the proper policy & signing files for signed images to work fully
+  - type: dnf
+    install:
+      packages:
+        - adw-gtk3-theme
+        - alacritty
+        - alsa-firmware
+        - apr
+        - apr-util
+        - arimo-nerd-fonts
+        - btop
+        - cargo
+        - cmatrix
+        - distrobox
+        - fastfetch
+        - fdk-aac
+        - ffmpeg-libs
+        - ffmpegthumbnailer
+        - fish
+        - flatpak-spawn
+        - fuse
+        - fzf
+        - google-arimo-fonts
+        - google-droid-fonts-all
+        - google-go-fonts
+        - google-noto-fonts-all
+        - google-noto-sans-cjk-fonts
+        - google-noto-sans-egyptian-hieroglyphs-fonts
+        - google-noto-sans-hk-fonts
+        - google-noto-serif-cjk-fonts
+        - google-roboto-fonts
+        - google-roboto-mono-fonts
+        - google-roboto-slab-fonts
+        - google-rubik-fonts
+        - grub2-tools-extra
+        - gvfs-nfs
+        - HandBrake
+        - htop
+        - ibus-mozc
+        - ibus-unikey
+        - intel-media-driver
+        - jetbrains-mono-fonts-all
+        - jetbrainsmono-nerd-fonts
+        - just
+        - kf6-kirigami-addons
+        - libavcodec-freeworld
+        - libcamera
+        - libcamera-gstreamer
+        - libcamera-ipa
+        - libcamera-tools
+        - libheif
+        - libheif-freeworld
+        - libimobiledevice-utils
+        - libratbag-ratbagd
+        - libva-utils
+        - lshw
+        - material-icons-fonts
+        - net-tools
+        - nvme-cli
+        - nvtop
+        - openrgb-udev-rules
+        - openssl
+        - oversteer
+        - pam-u2f
+        - pam_yubico
+        - pamu2fcfg
+        - pipewire-alsa
+        - pipewire-codec-aptx
+        - pipewire-gstreamer
+        - pipewire-libs
+        - powerstat
+        - qt5ct
+        - qt6ct
+        - rsms-inter-fonts
+        - rsms-inter-vf-fonts
+        - rust
+        - setroubleshoot
+        - signal-cli
+        - smartmontools
+        - solaar-udev
+        - squashfs-tools
+        - starship
+        - symlinks
+        - tcpdump
+        - terminus-fonts
+        - terminus-fonts-console
+        - tmux
+        - traceroute
+        - usbmuxd
+        - yazi
+        - yt-dlp
+        - vim-default-editor
+        - wireguard-tools
+        - wl-clipboard
+        - xhost
+        - xorg-x11-xauth
+        - yubikey-manager
+        - zsh
+        - zsh-autocomplete
+        - zsh-autosuggestions
+        - zsh-html
+        - zsh-syntax-highlighting
+        - zstd
+
+  - type: signing
