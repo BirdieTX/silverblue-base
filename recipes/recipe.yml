@@ -22,7 +22,7 @@ modules:
         - nano-default-editor
     install:
       packages:
-        - terra-mesa
+        - terra-release-mesa
 
   - type: dnf
     replace:
