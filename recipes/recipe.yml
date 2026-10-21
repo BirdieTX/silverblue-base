@@ -36,13 +36,19 @@ modules:
           - mesa-vulkan-drivers
 
   - type: dnf
+    replace:
+      packages:
+        old: ffmpeg-free
+        new: ffmpeg
+        old: libswscale
+        new: ffmpeg-libs
+
+  - type: dnf
     install:
       packages:
         - adw-gtk3-theme
         - alacritty
         - alsa-firmware
-        - apr
-        - apr-util
         - arimo-nerd-fonts
         - btop
         - cargo
@@ -50,7 +56,6 @@ modules:
         - distrobox
         - fastfetch
         - fdk-aac
-        - ffmpeg-libs
         - ffmpegthumbnailer
         - fish
         - flatpak-spawn
@@ -80,11 +85,8 @@ modules:
         - just
         - kf6-kirigami-addons
         - libavcodec-freeworld
-        - libcamera
         - libcamera-gstreamer
-        - libcamera-ipa
         - libcamera-tools
-        - libheif
         - libheif-freeworld
         - libimobiledevice-utils
         - libratbag-ratbagd
@@ -92,18 +94,13 @@ modules:
         - lshw
         - material-icons-fonts
         - net-tools
-        - nvme-cli
         - nvtop
         - openrgb-udev-rules
-        - openssl
         - oversteer
         - pam-u2f
         - pam_yubico
         - pamu2fcfg
-        - pipewire-alsa
         - pipewire-codec-aptx
-        - pipewire-gstreamer
-        - pipewire-libs
         - powerstat
         - qt5ct
         - qt6ct
@@ -122,20 +119,14 @@ modules:
         - terminus-fonts-console
         - tmux
         - traceroute
-        - usbmuxd
+        - vim-default-editor
         - yazi
         - yt-dlp
-        - vim-default-editor
-        - wireguard-tools
-        - wl-clipboard
-        - xhost
-        - xorg-x11-xauth
         - yubikey-manager
         - zsh
         - zsh-autocomplete
         - zsh-autosuggestions
         - zsh-html
         - zsh-syntax-highlighting
-        - zstd
 
   - type: signing
