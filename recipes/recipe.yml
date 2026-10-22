@@ -37,7 +37,7 @@ modules:
 
   - type: dnf
     install:
-    allow-erasing: true
+      allow-erasing: true
       packages:
         - adw-gtk3-theme
         - alacritty
