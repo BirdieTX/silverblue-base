@@ -36,15 +36,8 @@ modules:
           - mesa-vulkan-drivers
 
   - type: dnf
-    replace:
-      packages:
-        old: ffmpeg-free
-        new: ffmpeg
-        old: libswscale
-        new: ffmpeg-libs
-
-  - type: dnf
     install:
+    allow-erasing: true
       packages:
         - adw-gtk3-theme
         - alacritty
@@ -56,6 +49,8 @@ modules:
         - distrobox
         - fastfetch
         - fdk-aac
+        - ffmpeg
+        - ffmpeg-libs
         - ffmpegthumbnailer
         - fish
         - flatpak-spawn
